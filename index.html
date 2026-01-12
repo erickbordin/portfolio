@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>erick bordin</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIABLES & THEMES --- */
+        :root {
+            /* Default Dark Theme */
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --nav-bg: rgba(30, 41, 59, 0.8);
+            --nav-border: rgba(255, 255, 255, 0.1);
+            --tooltip-bg: #f8fafc;
+            --tooltip-text: #0f172a;
+
+            --code-font: 'JetBrains Mono', monospace;
+            --body-font: 'Inter', sans-serif;
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --accent: #0284c7;
+            --accent-hover: #0369a1;
+            --nav-bg: rgba(255, 255, 255, 0.8);
+            --nav-border: rgba(0, 0, 0, 0.1);
+            --tooltip-bg: #0f172a;
+            --tooltip-text: #f8fafc;
+        }
+
+        /* --- RESET --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--body-font);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            padding-bottom: 100px; /* Space for the floating nav */
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- LAYOUT UTILS --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section { padding: 80px 0; }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: var(--text-main);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::before {
+            content: "#";
+            color: var(--accent);
+            font-family: var(--code-font);
+        }
+
+        /* --- HEADER / HERO --- */
+        header {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content p {
+            color: var(--accent);
+            font-family: var(--code-font);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--text-main), var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content .subtitle {
+            font-family: var(--code-font);
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            min-height: 1.6em;
+            margin-bottom: 30px;
+        }
+
+        /* --- BUTTON STYLE --- */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            font-family: var(--code-font);
+            font-weight: bold;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            color: var(--bg-color);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* --- ABOUT --- */
+        .about-text {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .about-text strong {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* --- SKILLS --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: transform 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
+        }
+
+        .skill-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-card h3 i { color: var(--accent); }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            font-family: var(--code-font);
+            font-size: 0.8rem;
+            background: var(--bg-color);
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        /* --- PROJECTS --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .project-icons a {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-left: 15px;
+        }
+
+        .project-icons a:hover { color: var(--accent); }
+
+        .project-desc {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .tech-stack {
+            font-family: var(--code-font);
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-top: auto;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* --- CONTACT --- */
+        .contact-section {
+            text-align: center;
+            background: var(--card-bg);
+            padding: 60px 20px;
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+
+        .contact-section h2 {
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-section h2::before { display: none; }
+
+        .contact-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .btn-contact {
+            display: inline-block;
+            background-color: var(--accent);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 4px 14px 0 rgba(56, 189, 248, 0.39);
+            margin-bottom: 15px;
+        }
+
+        .btn-contact:hover {
+            background-color: var(--accent-hover);
+            transform: scale(1.05);
+        }
+
+        .email-link {
+            display: block;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            margin-top: 10px;
+        }
+        
+        .email-link:hover {
+            color: var(--accent);
+        }
+
+        /* --- FLOATING NAVIGATION --- */
+        .floating-nav-container {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+
+        .floating-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--nav-bg);
+            padding: 10px 15px;
+            border-radius: 50px;
+            border: 1px solid var(--nav-border);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(148, 163, 184, 0.1);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .nav-item.active {
+            background-color: rgba(148, 163, 184, 0.2);
+            color: var(--text-main);
+        }
+
+        .divider {
+            width: 1px;
+            height: 24px;
+            background-color: var(--text-muted);
+            opacity: 0.3;
+            margin: 0 5px;
+        }
+
+        /* Tooltip style */
+        .nav-item::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.8);
+            background-color: var(--tooltip-bg);
+            color: var(--tooltip-text);
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-family: var(--body-font);
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            pointer-events: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-item:hover::after {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) scale(1);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 60px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.8rem; }
+            .floating-nav-container { bottom: 20px; width: 90%; }
+            .floating-nav { width: 100%; justify-content: space-between; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="home">
+        <div class="container hero-content">
+            <p data-i18n="hero_greeting">Hi, I am</p>
+            <h1>Érick Bordin</h1>
+            <div class="subtitle" id="typewriter"></div>
+            <a href="#projects" class="btn" data-i18n="btn_projects">View Projects</a>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="container">
+            <h2 data-i18n="about_title">About Me</h2>
+            <p class="about-text" data-i18n="about_text">
+                My journey is focused on creating efficient software solutions, with preference in
+                <strong>Back-End</strong> development through academic projects using <strong>Java</strong> and
+                <strong>REST APIs</strong>.
+                I also have a solid foundation in low-level languages like <strong>C and C++</strong>, and I am
+                proficient in using <strong>Git</strong> for version control in collaborative environments.
+                <br><br>
+                I am seeking my <strong>first professional opportunity</strong> to apply and expand my skills. I have a
+                strong interest in software architecture and my goal is to grow within the field and become a reference
+                in Software Engineering.
+            </p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 data-i18n="skills_title">Tech Stack</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3 data-i18n="lang_title"><i class="fas fa-code"></i> Languages</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Java 17/21</span>
+                        <span class="tag">C/C++</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3 data-i18n="framework_title"><i class="fas fa-layer-group"></i> Frameworks</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Spring Boot</span>
+                        <span class="tag">API REST</span>
+                        <span class="tag">Maven</span>
+                        <span class="tag">Hibernate/JPA</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3 data-i18n="data_title"><i class="fas fa-database"></i> Data & Tools</h3>
+                    <div class="skill-tags">
+                        <span class="tag">SQL</span>
+                        <span class="tag">Git/GitHub</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">JUnit 5</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 data-i18n="projects_title">Selected Projects</h2>
+            <div class="projects-grid">
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">PicPay</h3>
+                        <div class="project-icons">
+                            <a href="https://github.com/erickbordin/picpay" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <p class="project-desc" data-i18n="desc_picpay">
+                        Implementation of a high-concurrency financial transfer system.
+                        The challenge was to ensure transaction integrity between users and merchants while consuming
+                        external authorization services.
+                        I used <strong>Transaction Management</strong> for atomicity and a layered architecture.
+                    </p>
+                    <div class="tech-stack">
+                        <span>Java 21</span> <span>Spring Boot</span> <span>H2</span> <span>REST API</span> 
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title" data-i18n="title_chatbot">School Management Chatbot</h3>
+                        <div class="project-icons">
+                            <a href="https://github.com/erickbordin/chatbot-codigokid" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <p class="project-desc" data-i18n="desc_chatbot">
+                        Automation system for the "Código Kid" unit to reduce manual secretarial work.
+                        I developed a conversational web interface that allows automated checking of student logins,
+                        deadlines, and class rescheduling.
+                    </p>
+                    <div class="tech-stack">
+                        <span>JavaScript</span> <span>Web Automation</span> <span>Front-Back Integration</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Market System (Retail)</h3>
+                        <div class="project-icons">
+                            <a href="https://github.com/erickbordin/market-java" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <p class="project-desc" data-i18n="desc_market">
+                        Application focused on robust modeling of Sales and Products using pure Object-Oriented
+                        Programming.
+                        Focuses on the correct application of Polymorphism, Inheritance, and Encapsulation for retail
+                        business rules.
+                    </p>
+                    <div class="tech-stack">
+                        <span>Java</span> <span>OOP</span> <span>Design Patterns</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="contact-section">
+                <h2 data-i18n="contact_title">Get In Touch</h2>
+                <p class="contact-subtitle" data-i18n="contact_subtitle">
+                    Want to chat? Just send me a direct message. I am open to new opportunities and
+                    collaborations!
+                </p>
+                <a href="https://www.linkedin.com/in/erick-bordin/" target="_blank" class="btn-contact">
+                    <i class="fab fa-linkedin"></i> <span data-i18n="contact_btn">Say Hello</span>
+                </a>
+                
+                <a href="mailto:ericksouzabordin3@gmail.com" class="email-link">
+                    <i class="fas fa-envelope"></i> ericksouzabordin3@gmail.com
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <span class="footer-name">Érick Bordin</span>
+        </div>
+    </footer>
+
+    <div class="floating-nav-container">
+        <nav class="floating-nav">
+            <a href="#home" class="nav-item active" data-tooltip="Home" onclick="setActive(this)">
+                <i class="fas fa-home"></i>
+            </a>
+            <a href="#projects" class="nav-item" data-tooltip="Projects" onclick="setActive(this)">
+                <i class="fas fa-code"></i>
+            </a>
+            
+            <a href="#contact" class="nav-item" data-tooltip="Contact" onclick="setActive(this)">
+                <i class="fas fa-envelope"></i>
+            </a>
+
+            <div class="divider"></div>
+
+            <a href="https://github.com/erickbordin" target="_blank" class="nav-item" data-tooltip="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/erick-bordin/" target="_blank" class="nav-item"
+                data-tooltip="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+
+            <div class="divider"></div>
+
+            <button class="nav-item" id="lang-toggle" data-tooltip="PT / EN">
+                <span id="lang-text" style="font-weight: bold; font-size: 0.85rem; font-family: var(--code-font);">EN</span>
+            </button>
+
+            <button class="nav-item" id="theme-toggle" data-tooltip="Toggle Theme">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+        </nav>
+    </div>
+
+    <script>
+        /* --- TRANSLATION SYSTEM --- */
+        const textElement = document.getElementById('typewriter');
+        
+        const translations = {
+            en: {
+                hero_greeting: "Hi, I am",
+                btn_projects: "View Projects",
+                about_title: "About Me",
+                about_text: "My journey is focused on creating efficient software solutions, with preference in <strong>Back-End</strong> development through academic projects using <strong>Java</strong> and <strong>REST APIs</strong>. I also have a solid foundation in low-level languages like <strong>C and C++</strong>, and I am proficient in using <strong>Git</strong> for version control in collaborative environments.<br><br>I am seeking my <strong>first professional opportunity</strong> to apply and expand my skills. I have a strong interest in software architecture and my goal is to grow within the field and become a reference in Software Engineering.",
+                skills_title: "Tech Stack",
+                lang_title: '<i class="fas fa-code"></i> Languages',
+                framework_title: '<i class="fas fa-layer-group"></i> Frameworks',
+                data_title: '<i class="fas fa-database"></i> Data & Tools',
+                projects_title: "Selected Projects",
+                desc_picpay: "Implementation of a high-concurrency financial transfer system. The challenge was to ensure transaction integrity between users and merchants while consuming external authorization services. I used <strong>Transaction Management</strong> for atomicity and a layered architecture.",
+                title_chatbot: "School Management Chatbot",
+                desc_chatbot: 'Automation system for the "Código Kid" unit to reduce manual secretarial work. I developed a conversational web interface that allows automated checking of student logins, deadlines, and class rescheduling.',
+                desc_market: "Application focused on robust modeling of Sales and Products using pure Object-Oriented Programming. Focuses on the correct application of Polymorphism, Inheritance, and Encapsulation for retail business rules.",
+                contact_title: "Get In Touch",
+                contact_subtitle: "Want to chat? Just send me a direct message. I am open to new opportunities and collaborations!",
+                contact_btn: "Say Hello",
+                phrases: ["Back-End Developer.", "Java & Spring Boot.", "Problem Solver.", "Out of the box solutions."]
+            },
+            pt: {
+                hero_greeting: "Olá, eu sou",
+                btn_projects: "Ver Projetos",
+                about_title: "Sobre Mim",
+                about_text: "Minha jornada foca na criação de soluções de software eficientes, com preferência em desenvolvimento <strong>Back-End</strong> através de projetos acadêmicos usando <strong>Java</strong> e <strong>APIs REST</strong>. Tenho base sólida em linguagens de baixo nível como <strong>C e C++</strong>, e domino o uso de <strong>Git</strong> para controle de versão.<br><br>Busco minha <strong>primeira oportunidade profissional</strong> para aplicar e expandir minhas habilidades. Tenho forte interesse em arquitetura de software e meu objetivo é crescer na área e me tornar referência em Engenharia de Software.",
+                skills_title: "Habilidades",
+                lang_title: '<i class="fas fa-code"></i> Linguagens',
+                framework_title: '<i class="fas fa-layer-group"></i> Frameworks',
+                data_title: '<i class="fas fa-database"></i> Dados & Tools',
+                projects_title: "Projetos",
+                desc_picpay: "Implementação de um sistema de transferências financeiras de alta concorrência. O desafio foi garantir a integridade das transações entre usuários e lojistas consumindo serviços externos de autorização. Usei <strong>Gerenciamento de Transações</strong> para atomicidade e arquitetura em camadas.",
+                title_chatbot: "Chatbot de Gestão Escolar",
+                desc_chatbot: 'Sistema de automação para a unidade "Código Kid" visando reduzir o trabalho manual da secretaria. Desenvolvi uma interface web conversacional que permite verificação automática de logins, prazos e reposição de aulas.',
+                desc_market: "Aplicação focada na modelagem robusta de Vendas e Produtos usando Programação Orientada a Objetos pura. Foca na aplicação correta de Polimorfismo, Herança e Encapsulamento para regras de negócio de varejo.",
+                contact_title: "Entre em Contato",
+                contact_subtitle: "Quer bater um papo? Basta me enviar uma mensagem. Estou aberto a novas oportunidades e colaborações!",
+                contact_btn: "Diga Olá",
+                phrases: ["Desenvolvedor Back-End.", "Java & Spring Boot.", "Resolvedor de Problemas.", "Soluções criativas."]
+            }
+        };
+
+        // Globals
+        let phrases = translations.en.phrases; 
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 100;
+        let currentLang = 'en';
+
+        /* --- LANGUAGE LOGIC --- */
+        const langToggle = document.getElementById('lang-toggle');
+        const langText = document.getElementById('lang-text');
+        
+        function setLanguage(lang) {
+            currentLang = lang;
+            // Update static text
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Update button
+            langText.textContent = lang === 'en' ? 'EN' : 'PT';
+            
+            // Update Typewriter phrases
+            phrases = translations[lang].phrases;
+            
+            // Save preference
+            localStorage.setItem('lang', lang);
+        }
+
+        langToggle.addEventListener('click', () => {
+            const newLang = currentLang === 'en' ? 'pt' : 'en';
+            setLanguage(newLang);
+        });
+
+        /* --- HERO TYPEWRITER --- */
+        function type() {
+            const currentPhrase = phrases[phraseIndex % phrases.length];
+
+            if (isDeleting) {
+                textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 50;
+            } else {
+                textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 100;
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                isDeleting = true;
+                typeSpeed = 2000;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex++;
+                typeSpeed = 500;
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        /* --- THEME TOGGLE --- */
+        const toggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const htmlDoc = document.documentElement;
+
+        function updateIcon(theme) {
+            if (theme === 'light') {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlDoc.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlDoc.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+        });
+
+        /* --- ACTIVE NAV --- */
+        function setActive(element) {
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        const sections = document.querySelectorAll('section, header');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-item[href^="#"]').forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href').includes(current)) {
+                    a.classList.add('active');
+                }
+            });
+        });
+
+        /* --- INIT --- */
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            htmlDoc.setAttribute('data-theme', savedTheme);
+            updateIcon(savedTheme);
+
+            const savedLang = localStorage.getItem('lang') || 'en';
+            setLanguage(savedLang);
+
+            type();
+        });
+    </script>
+</body>
+</html>

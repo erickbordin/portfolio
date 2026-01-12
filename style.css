@@ -54,9 +54,7 @@
             transition: 0.3s;
         }
 
-        ul {
-            list-style: none;
-        }
+    
 
         .container {
             max-width: 900px;
@@ -392,15 +390,6 @@
             transform: translateX(-50%) scale(1);
         }
 
-        footer {
-            text-align: center;
-            padding: 20px 0;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 60px;
-        }
-
-        /* RESPONSIVE */
         @media (max-width: 768px) {
             .hero-content h1 {
                 font-size: 2.8rem;

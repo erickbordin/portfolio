@@ -18,8 +18,18 @@
         <div class="container hero-content">
             <p data-i18n="hero_greeting">Hi, I am</p>
             <h1>Érick Bordin</h1>
+            <p class="tagline" data-i18n="hero_tagline">Backend developer putting LLMs into production</p>
             <div class="subtitle" id="typewriter"></div>
-            <a href="#projects" class="btn" data-i18n="btn_projects">View Projects</a>
+            <ul class="proofs">
+                <li><strong data-i18n="proof1_value">18.7 h/day</strong> <span data-i18n="proof1_label">of wasted robot time found and fixed</span></li>
+                <li><strong data-i18n="proof2_value">3 → 17</strong> <span data-i18n="proof2_label">affected accounts found by measuring</span></li>
+                <li><strong data-i18n="proof3_value">14-panel</strong> <span data-i18n="proof3_label">Grafana dashboard on a Quarkus connector</span></li>
+            </ul>
+            <div class="hero-actions">
+                <a href="assets/cv-erick-bordin.pdf" download class="btn btn-primary"><i class="fas fa-download"></i> <span data-i18n="btn_cv">Download CV</span></a>
+                <a href="https://github.com/erickbordin" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://www.linkedin.com/in/erick-bordin/" target="_blank" class="btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            </div>
         </div>
     </header>
 
@@ -28,6 +38,32 @@
             <h2 data-i18n="about_title">About Me</h2>
             <p class="about-text" data-i18n="about_text"></p>
 
+        </div>
+    </section>
+
+    <section id="impact">
+        <div class="container">
+            <h2 data-i18n="impact_title">Impact</h2>
+            <div class="impact-grid">
+                <article class="impact-card">
+                    <h3 data-i18n="impact1_title">Lead crawler reprocessing loop</h3>
+                    <p data-i18n="impact1_problem"></p>
+                    <div class="impact-metric"><strong data-i18n="impact1_metric">18.7 h/day</strong> <span data-i18n="impact1_metric_label"></span></div>
+                    <p data-i18n="impact1_fix"></p>
+                </article>
+                <article class="impact-card">
+                    <h3 data-i18n="impact2_title">AI-assisted investigation</h3>
+                    <p data-i18n="impact2_problem"></p>
+                    <div class="impact-metric"><strong data-i18n="impact2_metric">3 → 17</strong> <span data-i18n="impact2_metric_label"></span></div>
+                    <p data-i18n="impact2_fix"></p>
+                </article>
+                <article class="impact-card">
+                    <h3 data-i18n="impact3_title">Observability</h3>
+                    <p data-i18n="impact3_problem"></p>
+                    <div class="impact-metric"><strong data-i18n="impact3_metric">14 panels</strong> <span data-i18n="impact3_metric_label"></span></div>
+                    <p data-i18n="impact3_fix"></p>
+                </article>
+            </div>
         </div>
     </section>
 
@@ -94,6 +130,48 @@
                         </div>
                     </div>
                     <p class="project-desc" data-i18n="desc_seucorre"> </p>
+                    <svg class="flow" viewBox="0 0 360 496" role="img" aria-labelledby="flow-title">
+                        <title id="flow-title" data-i18n="flow_title">SeuCorre AI flow</title>
+                        <defs>
+                            <marker id="flow-arrow" viewBox="0 0 8 8" refX="8" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto">
+                                <path d="M0,0 L8,4 L0,8 z"></path>
+                            </marker>
+                        </defs>
+                        <rect x="10" y="4" width="200" height="36" rx="8"></rect>
+                        <text x="110" y="22" data-i18n="flow_checkin">Weekly check-in</text>
+                        <line x1="110" y1="40" x2="110" y2="62" marker-end="url(#flow-arrow)"></line>
+                        <polygon points="30,64 190,64 210,92 190,120 30,120 10,92"></polygon>
+                        <text x="110" y="92" data-i18n="flow_decision">needs rewrite?</text>
+                        <line x1="210" y1="92" x2="238" y2="92" marker-end="url(#flow-arrow)"></line>
+                        <text class="edge-label" x="213" y="80" data-i18n="flow_no">no</text>
+                        <rect x="240" y="74" width="116" height="36" rx="8"></rect>
+                        <text x="298" y="92" data-i18n="flow_keep">keep plan</text>
+                        <line x1="110" y1="120" x2="110" y2="142" marker-end="url(#flow-arrow)"></line>
+                        <text class="edge-label" x="118" y="131" data-i18n="flow_yes">yes</text>
+                        <rect x="10" y="144" width="200" height="36" rx="8"></rect>
+                        <text class="mono" x="110" y="162">PromptBuilder</text>
+                        <line x1="110" y1="180" x2="110" y2="202" marker-end="url(#flow-arrow)"></line>
+                        <rect x="10" y="204" width="200" height="36" rx="8"></rect>
+                        <text class="mono" x="110" y="222">IAClient</text>
+                        <line x1="58" y1="240" x2="58" y2="262" marker-end="url(#flow-arrow)"></line>
+                        <line x1="162" y1="240" x2="162" y2="262" marker-end="url(#flow-arrow)"></line>
+                        <rect x="10" y="264" width="96" height="36" rx="8"></rect>
+                        <text x="58" y="282">Claude</text>
+                        <rect x="114" y="264" width="96" height="36" rx="8"></rect>
+                        <text x="162" y="282">Ollama</text>
+                        <line x1="58" y1="300" x2="58" y2="322" marker-end="url(#flow-arrow)"></line>
+                        <line x1="162" y1="300" x2="162" y2="322" marker-end="url(#flow-arrow)"></line>
+                        <rect x="10" y="324" width="200" height="36" rx="8"></rect>
+                        <text x="110" y="342" data-i18n="flow_parse">JSON parse</text>
+                        <line x1="110" y1="360" x2="110" y2="382" marker-end="url(#flow-arrow)"></line>
+                        <rect class="flow-guard" x="10" y="384" width="200" height="48" rx="8"></rect>
+                        <text x="110" y="400" data-i18n="flow_rule">10% rule</text>
+                        <text class="flow-note" x="110" y="418" data-i18n="flow_guardrail">guardrail</text>
+                        <line x1="110" y1="432" x2="110" y2="454" marker-end="url(#flow-arrow)"></line>
+                        <rect x="10" y="456" width="200" height="36" rx="8"></rect>
+                        <text x="110" y="474" data-i18n="flow_saved">saved plan</text>
+                    </svg>
+                    <a href="https://github.com/erickbordin/seucorre#como-a-ia-funciona" target="_blank" class="project-link" data-i18n="link_ai">How the AI works →</a>
                     <div class="tech-stack">
                         <span>Java 17</span> <span>Spring Boot</span> <span>Claude API</span> <span>Ollama</span> <span>PostgreSQL</span> <span>Redis</span> <span>React</span>
                     </div>

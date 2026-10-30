@@ -83,7 +83,7 @@
         }
 
         header {
-            min-height: 90vh;
+            padding: 96px 0 48px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -107,12 +107,59 @@
             -webkit-text-fill-color: transparent;
         }
 
+        .hero-content .tagline {
+            color: var(--text-main);
+            font-family: var(--body-font);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
         .hero-content .subtitle {
             font-family: var(--code-font);
             font-size: 1.2rem;
             color: var(--text-muted);
             min-height: 1.6em;
             margin-bottom: 30px;
+        }
+
+        .proofs {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 10px;
+        }
+
+        .proofs li {
+            background: var(--card-bg);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .proofs strong,
+        .impact-metric strong {
+            display: block;
+            color: var(--accent);
+            font-family: var(--code-font);
+            font-size: 1.5rem;
+            margin-bottom: 4px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn.btn-primary {
+            background: var(--accent);
+            color: var(--bg-color);
         }
 
         .btn {
@@ -193,6 +240,99 @@
             padding: 6px 12px;
             border-radius: 6px;
             border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .impact-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .impact-card h3 {
+            color: var(--text-main);
+            font-size: 1.1rem;
+        }
+
+        .impact-metric {
+            border-left: 3px solid var(--accent);
+            padding-left: 12px;
+            font-size: 0.85rem;
+        }
+
+        .flow {
+            display: block;
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto 16px;
+            font-family: var(--body-font);
+            font-size: 15px;
+        }
+
+        .flow rect,
+        .flow polygon {
+            fill: var(--bg-color);
+            stroke: var(--text-muted);
+            stroke-width: 1.5;
+        }
+
+        .flow .flow-guard {
+            stroke: var(--accent);
+            stroke-width: 2;
+        }
+
+        .flow line {
+            stroke: var(--text-muted);
+            stroke-width: 1.5;
+        }
+
+        .flow marker path {
+            fill: var(--text-muted);
+        }
+
+        .flow text {
+            fill: var(--text-main);
+            text-anchor: middle;
+            dominant-baseline: central;
+        }
+
+        .flow .mono {
+            font-family: var(--code-font);
+            font-size: 14px;
+        }
+
+        .flow .edge-label {
+            fill: var(--text-muted);
+            font-size: 12px;
+            text-anchor: start;
+        }
+
+        .flow .flow-note {
+            fill: var(--accent);
+            font-size: 12px;
+        }
+
+        .project-link {
+            display: inline-block;
+            color: var(--accent);
+            font-family: var(--code-font);
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .project-link:hover {
+            color: var(--accent-hover);
         }
 
         .projects-grid {
@@ -393,6 +533,10 @@
         @media (max-width: 768px) {
             .hero-content h1 {
                 font-size: 2.8rem;
+            }
+
+            .proofs {
+                grid-template-columns: 1fr;
             }
 
             .floating-nav-container {

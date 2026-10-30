@@ -1,11 +1,8 @@
-const textElement = document.getElementById('typewriter');
-        
         const translations = {
             en: {
-                hero_greeting: "Hi, I am",
                 hero_tagline: "Backend developer putting LLMs into production",
                 proof1_value: "18.7 h/day",
-                proof1_label: "of wasted robot time found and fixed",
+                proof1_label: "of wasted robot time found",
                 proof2_value: "3 → 17",
                 proof2_label: "affected accounts found by measuring",
                 proof3_value: "14-panel",
@@ -13,10 +10,10 @@ const textElement = document.getElementById('typewriter');
                 btn_cv: "Download CV",
                 impact_title: "Impact",
                 impact1_title: "Lead crawler reprocessing loop",
-                impact1_problem: "Old leads were saved, deleted by MongoDB's TTL and extracted again every cycle.",
+                impact1_problem: "Old leads were deleted by MongoDB's TTL and re-extracted every cycle.",
                 impact1_metric: "18.7 h/day",
-                impact1_metric_label: "of robot time on the most affected account, and a 42-min median delay for new leads (4.7 min elsewhere).",
-                impact1_fix: "Built the fix after comparing 4 approaches: a <strong>Redis \"already seen\" memory</strong> with randomized 12–24 h expiry, no operation on the production database. Validated with 13 unit tests, mutation testing, 9 end-to-end scenarios and the real robot (3rd cycle: 0 re-extractions).",
+                impact1_metric_label: "of robot time wasted on one account; new leads waited 42 min (median).",
+                impact1_fix: "Built a <strong>Redis \"already seen\" memory</strong>, with no production DB changes. Real robot, 3rd cycle: <strong>0 re-extractions</strong>.",
                 impact2_title: "AI-assisted investigation",
                 impact2_problem: "An incident was reported as affecting 3 accounts.",
                 impact2_metric: "3 → 17",
@@ -39,7 +36,7 @@ const textElement = document.getElementById('typewriter');
                 flow_saved: "saved plan",
                 link_ai: "How the AI works →",
                 about_title: "About Me",
-                about_text: "Backend developer at <strong>Syonet</strong>, on the lead intake squad of an automotive CRM, and a Systems for Internet student at IFSul.<br>My focus today is putting <strong>LLMs into real software</strong>: model calls with guardrails, retries and fallback, and production systems I can measure with <strong>Micrometer, Prometheus and Grafana</strong>. At work I build with <strong>Java, Quarkus and Java EE</strong>, and I investigate production with AI agents (<strong>Claude Code + MCP</strong>).<br>Before that I taught programming to kids and teenagers, which taught me to explain complex things simply.<br>Currently learning: Python, LangGraph and LLM evals.",
+                about_text: "Backend developer at <strong>Syonet</strong>, on the lead intake squad of an automotive CRM, and a Systems for Internet student at IFSul. Before that I taught programming to kids and teenagers.<br>Currently learning: <strong>Python, LangGraph and LLM evals</strong>.",
                 skills_title: "Tech Stack",
                 ai_title: '<i class="fas fa-robot"></i> AI',
                 title_seucorre: "SeuCorre — AI Running Coach",
@@ -55,14 +52,12 @@ const textElement = document.getElementById('typewriter');
                 desc_chatbot: 'Automation system for the "Código Kid" unit to reduce manual secretarial work. I developed a conversational web interface that allows automated checking of student logins, deadlines, and class rescheduling.',
                 contact_title: "Get In Touch",
                 contact_subtitle: "Want to chat? Just send me a direct message. I am open to new opportunities and collaborations!",
-                contact_btn: "Say Hello",
-                phrases: ["Backend Developer.", "LLMs & AI Agents.", "Java · Quarkus · Spring Boot.", "Observability-minded."]
+                contact_btn: "Say Hello"
             },
             pt: {
-                hero_greeting: "Olá, eu sou",
                 hero_tagline: "Desenvolvedor backend colocando LLMs em produção",
                 proof1_value: "18,7 h/dia",
-                proof1_label: "de tempo de robô desperdiçado, encontrado e corrigido",
+                proof1_label: "de tempo de robô desperdiçado, encontrado",
                 proof2_value: "3 → 17",
                 proof2_label: "contas afetadas, encontradas medindo",
                 proof3_value: "14 painéis",
@@ -70,10 +65,10 @@ const textElement = document.getElementById('typewriter');
                 btn_cv: "Baixar CV",
                 impact_title: "Impacto",
                 impact1_title: "Loop de reprocessamento no crawler de leads",
-                impact1_problem: "Leads antigos eram salvos, apagados pelo TTL do MongoDB e extraídos de novo a cada ciclo.",
+                impact1_problem: "Leads antigos eram apagados pelo TTL do MongoDB e extraídos de novo a cada ciclo.",
                 impact1_metric: "18,7 h/dia",
-                impact1_metric_label: "de tempo de robô na conta mais afetada, e mediana de 42 min de atraso para leads novos (4,7 min nas demais).",
-                impact1_fix: "Construí a correção depois de comparar 4 abordagens: uma <strong>memória de \"já visto\" no Redis</strong> com expiração aleatória de 12–24 h, sem nenhuma operação no banco de produção. Validada com 13 testes unitários, teste de mutação, 9 cenários ponta a ponta e o robô real (3º ciclo: 0 re-extrações).",
+                impact1_metric_label: "de robô desperdiçado numa conta; lead novo esperava 42 min (mediana).",
+                impact1_fix: "Construí uma <strong>memória de \"já visto\" no Redis</strong>, sem mexer no banco de produção. Robô real, 3º ciclo: <strong>0 re-extrações</strong>.",
                 impact2_title: "Investigação assistida por IA",
                 impact2_problem: "Um incidente foi reportado com 3 contas afetadas.",
                 impact2_metric: "3 → 17",
@@ -96,7 +91,7 @@ const textElement = document.getElementById('typewriter');
                 flow_saved: "plano salvo",
                 link_ai: "Como a IA funciona →",
                 about_title: "Sobre Mim",
-                about_text: "Desenvolvedor backend na <strong>Syonet</strong>, no squad de captação de leads de um CRM automotivo, e estudante de Sistemas para Internet no IFSul.<br>Meu foco hoje é colocar <strong>LLMs em software de verdade</strong>: chamadas ao modelo com guardrails, retry e fallback, e sistemas em produção que eu consigo medir com <strong>Micrometer, Prometheus e Grafana</strong>. No trabalho construo com <strong>Java, Quarkus e Java EE</strong> e investigo produção com agentes de IA (<strong>Claude Code + MCP</strong>).<br>Antes disso fui professor de programação para crianças e adolescentes, o que me ensinou a explicar coisas complexas de forma simples.<br>Estudando agora: Python, LangGraph e evals de LLM.",
+                about_text: "Desenvolvedor backend na <strong>Syonet</strong>, no squad de captação de leads de um CRM automotivo, e estudante de Sistemas para Internet no IFSul. Antes disso fui professor de programação para crianças e adolescentes.<br>Estudando agora: <strong>Python, LangGraph e evals de LLM</strong>.",
                 skills_title: "Habilidades",
                 ai_title: '<i class="fas fa-robot"></i> IA',
                 title_seucorre: "SeuCorre — Coach de Corrida com IA",
@@ -112,17 +107,11 @@ const textElement = document.getElementById('typewriter');
                 desc_chatbot: 'Sistema de automação para a unidade "Código Kid" visando reduzir o trabalho manual da secretaria. Desenvolvi uma interface web conversacional que permite verificação automática de logins, prazos e reposição de aulas.',
                 contact_title: "Entre em Contato",
                 contact_subtitle: "Quer bater um papo? Basta me enviar uma mensagem. Estou aberto a novas oportunidades e colaborações!",
-                contact_btn: "Diga Olá",
-                phrases: ["Desenvolvedor Backend.", "LLMs & Agentes de IA.", "Java · Quarkus · Spring Boot.", "Observabilidade em produção."]
+                contact_btn: "Diga Olá"
             }
         };
 
         // Globals
-        let phrases = translations.en.phrases; 
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let typeSpeed = 100;
         let currentLang = 'en';
 
         /* --- LANGUAGE LOGIC --- */
@@ -142,9 +131,6 @@ const textElement = document.getElementById('typewriter');
             // Update button
             langText.textContent = lang === 'en' ? 'EN' : 'PT';
             
-            // Update Typewriter phrases
-            phrases = translations[lang].phrases;
-            
             // Save preference
             localStorage.setItem('lang', lang);
         }
@@ -153,32 +139,6 @@ const textElement = document.getElementById('typewriter');
             const newLang = currentLang === 'en' ? 'pt' : 'en';
             setLanguage(newLang);
         });
-
-        /* --- HERO TYPEWRITER --- */
-        function type() {
-            const currentPhrase = phrases[phraseIndex % phrases.length];
-
-            if (isDeleting) {
-                textElement.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-                typeSpeed = 50;
-            } else {
-                textElement.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-                typeSpeed = 100;
-            }
-
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                isDeleting = true;
-                typeSpeed = 2000;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                phraseIndex++;
-                typeSpeed = 500;
-            }
-
-            setTimeout(type, typeSpeed);
-        }
 
         /* --- THEME TOGGLE --- */
         const toggleBtn = document.getElementById('theme-toggle');
@@ -235,6 +195,4 @@ const textElement = document.getElementById('typewriter');
 
             const savedLang = localStorage.getItem('lang') || 'en';
             setLanguage(savedLang);
-
-            type();
         });

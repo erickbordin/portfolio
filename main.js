@@ -1,6 +1,6 @@
         const translations = {
             en: {
-                hero_tagline: "Backend developer putting LLMs into production",
+                hero_tagline: "Backend developer building with LLMs",
                 proof1_value: "18.7 h/day",
                 proof1_label: "of wasted robot time found",
                 proof2_value: "3 → 17",
@@ -55,7 +55,7 @@
                 contact_btn: "Say Hello"
             },
             pt: {
-                hero_tagline: "Desenvolvedor backend colocando LLMs em produção",
+                hero_tagline: "Desenvolvedor backend construindo com LLMs",
                 proof1_value: "18,7 h/dia",
                 proof1_label: "de tempo de robô desperdiçado, encontrado",
                 proof2_value: "3 → 17",
